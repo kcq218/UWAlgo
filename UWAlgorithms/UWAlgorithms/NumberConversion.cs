@@ -42,31 +42,43 @@ namespace UWAlgorithms
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Binary conversions");
-            Console.WriteLine(ConvertToBinary(0));
-            Console.WriteLine(ConvertToBinary(1));
-            Console.WriteLine(ConvertToBinary(10));
-            Console.WriteLine(ConvertToBinary(15));
-            Console.WriteLine(Convert(15, 2));
 
-            Console.WriteLine("Base 3 conversions");
+            printBase10(1000000000);
+        }
 
-            Console.WriteLine(Convert(15, 3));
-            Console.WriteLine(Convert(26, 3));
 
-            Console.WriteLine("Base16 conversions");
+        public static void factorial()
+        { 
+        
+        }
+        //30
+        public static void PrintBase2(int n)
+        {
+            var printed = 0;
+            int index = 1;
+            while (index < n)
+            {
+                Console.WriteLine(index);
+                index = index * 2;
+                printed++;
+            }
+            Console.WriteLine(printed);
+            Console.ReadLine();
+        }
 
-            Console.WriteLine(Convert(1, 16));
-            Console.WriteLine(Convert(15, 16));
-
-            Console.WriteLine(Convert(16, 16));
-            Console.WriteLine(Convert(32, 16));
-            Console.WriteLine(Convert(64, 16));
-            Console.WriteLine(Convert(255, 16));
-            Console.WriteLine(Convert(256, 16));
-
-            Console.WriteLine(Convert(1024, 16));
-
+        //9
+        public static void printBase10(int n)
+        {
+            var printed = 0;
+            int index = 1;
+            while (index < n)
+            {
+                Console.WriteLine(index);
+                index = index * 10;
+                printed++;
+            }
+            Console.WriteLine(printed);
+            Console.ReadLine();
         }
 
         // Assumes number >= 0 and base > 0; Does no validation of input
