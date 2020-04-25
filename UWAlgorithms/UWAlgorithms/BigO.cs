@@ -98,7 +98,15 @@ namespace UWAlgorithms
          *
          * Space Complexity
          * O(1) does not allocate extra space based on input.
-         * 
+         * 53
+         * 03
+         * 30
+         * 33
+         * 51
+         * 01
+         * 10
+         * 13
+         * 40
          */
 
         [TestMethod]
