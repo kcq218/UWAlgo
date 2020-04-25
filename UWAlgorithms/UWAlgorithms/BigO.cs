@@ -97,8 +97,8 @@ namespace UWAlgorithms
          * 1*2*3*4*5
          *
          * Space Complexity
-         * O(1) does not allocate extra space based on input.
-         * 53
+         * O(1) does not allocate extra space based on input. 
+         * Buckets Algorithms
          * 03
          * 30
          * 33
@@ -107,6 +107,13 @@ namespace UWAlgorithms
          * 10
          * 13
          * 40
+         * **
+         * 50
+         * 24
+         * 29
+         * 02
+         * 52
+         * 43
          */
 
         [TestMethod]
