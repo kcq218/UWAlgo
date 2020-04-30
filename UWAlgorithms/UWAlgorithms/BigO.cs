@@ -95,25 +95,51 @@ namespace UWAlgorithms
          *
          * Factorial
          * 1*2*3*4*5
-         *
-         * Space Complexity
-         * O(1) does not allocate extra space based on input. 
-         * Buckets Algorithms
-         * 03
-         * 30
-         * 33
-         * 51
-         * 01
-         * 10
-         * 13
-         * 40
-         * **
-         * 50
-         * 24
-         * 29
-         * 02
-         * 52
-         * 43
+         *  
+         *  1. For a regular array, how many steps would it take to search for all of a certain item?
+         *  For example, we want to search for every 55 contained within an array to determine how many
+         *  times it appears. Give your answer in terms of n.
+         *  
+         *  If the input n is just a number then it is 0(1) because the Array would be fixed, 
+         *  every time this algorithm is run it will run the same amount of time because it is 
+         *  accumulating count of n in a fixed array. If input is a number to search for and an
+         *  array then the run time would be O(n) based on the size of the array being passed in.
+         *  
+         *  2. There’s an age old puzzle that goes as follows: You’re at a river with two buckets.
+         *  One holds exactly 3 liters, and one holds exactly 5 liters. Figure out how to measure 
+         *  out exactly 4 liters using those two buckets. Describe (don't code) two different algorithms
+         *  for measuring out 4 liters. Which of your algorithms is more efficient? That is, 
+         *  which one takes the fewest steps?
+         *  
+         *  Run time Complexity
+         *  Space complexity O(1) Ill be using two array for the whole algorithm.
+         *  O(1) for both because they do the same amount of steps no matter the input. 
+         *  Buckets Algorithms
+         *  bucket of 5  bucket of 3
+         *  0          | 3
+         *  3          | 0
+         *  3          | 3
+         *  5          | 1
+         *  0          | 1
+         *  1          | 0
+         *  1          | 3
+         *  4          | 0
+         *  ************************
+         *  
+         *  Second Algorithm
+         *  bucket of 5  bucket of 3
+         *  5          | 0
+         *  2          | 3
+         *  2          | 0
+         *  0          | 2
+         *  5          | 2
+         *  4          | 3
+         *  
+         *  3. How many steps would it take to insert the number 7 into the ordered array of [2, 4, 6, 8, 10, 12]?
+         *  Describe the algorithm you used. What is the complexity of your algorithm?
+         *  It would take 3 steps and I would just loop the ordered array until I find a number bigget than n
+         *  
+         *  Run time Complexity O(n) and O
          */
 
         [TestMethod]
@@ -152,6 +178,74 @@ namespace UWAlgorithms
             }
             Console.WriteLine(printed);
             Console.ReadLine();
+        }
+
+        // What is Big O for this function SayHiNTimes ?
+        /*
+           O of n. runtime is linear to input.
+        */
+        static void SayHiNTimes(int n)
+        {
+            for (int x = 0; x < n; x++)
+            {
+                Console.WriteLine("hi");
+            }
+        }
+
+        // What is Big O for this function Sort?
+        /*
+           O(N^2) there will be 
+           N^2 operations each time this is called.
+        */
+        static void Sort(int[] numbers)
+        {
+            for (int x = 0; x < numbers.Length; x++)
+            {
+                for (int y = 0; y < numbers.Length; y++)
+                {
+                    if (numbers[x] < numbers[y])
+                    {
+                        int temp = numbers[x];
+                        numbers[x] = numbers[y];
+                        numbers[y] = temp;
+                    }
+                }
+            }
+        }
+
+        // What is Big O for this function Display?
+        /*
+           O of n. Runtime linear to input.           
+        */
+        static void Display(int[] numbers)
+        {
+            foreach (var n in numbers)
+            {
+                Console.WriteLine(n);
+            }
+        }
+
+        // What is Big O for this function PrintFirstItemThenFirstHalfThenSayHi100Times?
+        /*
+          still O(N) due to N itterating while less than middle index   
+        */
+        static void PrintFirstItemThenFirstHalfThenSayHi100Times(int[] theArray)
+        {
+            Console.WriteLine(theArray[0]);
+
+            int middleIndex = theArray.Length / 2;
+            int index = 0;
+
+            while (index < middleIndex)
+            {
+                Console.WriteLine(theArray[index]);
+                index++;
+            }
+
+            for (int x = 0; x < 100; x++)
+            {
+                Console.WriteLine("hi");
+            }
         }
     }
 }
