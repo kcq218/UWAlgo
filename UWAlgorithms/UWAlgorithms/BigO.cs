@@ -100,10 +100,11 @@ namespace UWAlgorithms
          *  For example, we want to search for every 55 contained within an array to determine how many
          *  times it appears. Give your answer in terms of n.
          *  
-         *  If the input n is just a number then it is 0(1) because the Array would be fixed, 
+         *  If the input n is just a number then it is 0(1) run time and O(n) space because the Array would be fixed, 
          *  every time this algorithm is run it will run the same amount of time because it is 
-         *  accumulating count of n in a fixed array. If input is a number to search for and an
-         *  array then the run time would be O(n) based on the size of the array being passed in.
+         *  accumulating count of n in a fixed array. 
+         *  If input is a number to search for and an
+         *  array then the run time would be O(n) based on the size of the array being passed in and O(n) space.
          *  
          *  2. There’s an age old puzzle that goes as follows: You’re at a river with two buckets.
          *  One holds exactly 3 liters, and one holds exactly 5 liters. Figure out how to measure 
@@ -111,9 +112,9 @@ namespace UWAlgorithms
          *  for measuring out 4 liters. Which of your algorithms is more efficient? That is, 
          *  which one takes the fewest steps?
          *  
-         *  Run time Complexity
-         *  Space complexity O(1) Ill be using two array for the whole algorithm.
-         *  O(1) for both because they do the same amount of steps no matter the input. 
+         *  Run time Complexity:  O(1) for both because they do the same amount of steps no matter the input. 
+         *  Space complexity O(n) Ill be using two array for the whole algorithm.
+         * 
          *  Buckets Algorithms
          *  bucket of 5  bucket of 3
          *  0          | 3
@@ -138,8 +139,8 @@ namespace UWAlgorithms
          *  3. How many steps would it take to insert the number 7 into the ordered array of [2, 4, 6, 8, 10, 12]?
          *  Describe the algorithm you used. What is the complexity of your algorithm?
          *  It would take 3 steps and I would just loop the ordered array until I find a number bigget than n
-         *  
-         *  Run time Complexity O(n) and O
+         *  Run Time Complexity: O of(n)
+         *  Space complexity: O of n for var to store int that will be inserted to input array.  
          */
 
         [TestMethod]
@@ -182,7 +183,8 @@ namespace UWAlgorithms
 
         // What is Big O for this function SayHiNTimes ?
         /*
-           O of n. runtime is linear to input.
+           run time complexity: O of n. runtime is linear to input.
+           space time complexity: O(n) int x is stored in memory.           
         */
         static void SayHiNTimes(int n)
         {
@@ -194,8 +196,9 @@ namespace UWAlgorithms
 
         // What is Big O for this function Sort?
         /*
-           O(N^2) there will be 
+           Run time Complexity: O(N^2) there will be 
            N^2 operations each time this is called.
+           Space Time Complexity: O(n) fir x and y
         */
         static void Sort(int[] numbers)
         {
@@ -215,7 +218,9 @@ namespace UWAlgorithms
 
         // What is Big O for this function Display?
         /*
-           O of n. Runtime linear to input.           
+           Run time Complexity: O of n. Runtime linear to input.  
+           Space time complexity: O(n) for var n.
+           
         */
         static void Display(int[] numbers)
         {
@@ -227,7 +232,8 @@ namespace UWAlgorithms
 
         // What is Big O for this function PrintFirstItemThenFirstHalfThenSayHi100Times?
         /*
-          still O(N) due to N itterating while less than middle index   
+          Run time O(N) due to N itterating while less than middle index   
+          Space time O(n) for var index and middlefinger
         */
         static void PrintFirstItemThenFirstHalfThenSayHi100Times(int[] theArray)
         {
