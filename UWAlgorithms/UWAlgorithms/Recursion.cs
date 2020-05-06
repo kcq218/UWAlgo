@@ -18,20 +18,41 @@ namespace UWAlgorithms
          * else add to sum
          * return stack with the top element popped off.
         **/
-        public static int Sum(Stack<int> values)
+        public int Sum(Stack<int> values)
         {
                 
             if(values.Count == 0)  return 0;
             else
             {
                 
-                return Sum(values.Pop());
+                return values.Pop() + Sum(values);
             }
         }
 
         // 2. Write a method that determines if the passed string is a palindrome or not
+        // if string.length = 0 return true
+        // else
+        // check to see if beginning and ending string are the same.
+        // call isPalindrome again
         public static bool IsPalindrome(string input)
         {
+            if (input.Length == 0 || input.Length == 1)
+            {
+                return true;
+            }
+            else
+            {
+                if(input[0] == input[input.Length-1])
+                {
+                    var sb = new StringBuilder();
+
+                    for(int i = 1; i < input.Length - 1; i++)
+                    {
+                        sb.Append(input[i]);
+                    }
+                    return IsPalindrome(sb.ToString());
+                }
+            }
             return false;
         }
 
@@ -40,7 +61,7 @@ namespace UWAlgorithms
         public static int StepWays(int steps)
         {
             // Leave this execution counter inside of your recursive method
-            _counter++;
+            //_counter++;
             //Begin main method body below here:
             return 0;
         }
