@@ -34,8 +34,10 @@ namespace UWAlgorithms
         // else
         // check to see if beginning and ending string are the same.
         // call isPalindrome again
-        public static bool IsPalindrome(string input)
+        public  bool IsPalindrome(string input)
         {
+            input = input.Replace(" ", "");
+
             if (input.Length == 0 || input.Length == 1)
             {
                 return true;
@@ -65,6 +67,12 @@ namespace UWAlgorithms
             //Begin main method body below here:
             return 0;
         }
+        
+        public int stepCount(int stepsToTake, int steps)
+        {
+            return stepCount(stepsToTake + 1, steps) + stepCount(stepsToTake + 2, steps) + stepCount(stepsToTake + 2, steps);
+        }
+
 
         public int Fibonacci(int n)
         {

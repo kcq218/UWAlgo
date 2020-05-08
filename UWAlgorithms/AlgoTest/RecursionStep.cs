@@ -23,5 +23,25 @@ namespace AlgoTest
 
             Assert.AreEqual(6, result);
         }
+
+        [TestMethod]
+        public void testPalindrome()
+        {
+            var recursion = new Recursion();
+
+            var result = recursion.IsPalindrome("racecar");
+
+            Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void testPalindromeNeverOddOrEven()
+        {
+            var recursion = new Recursion();
+
+            var result = recursion.IsPalindrome("never odd or even");
+
+            Assert.AreEqual(true, result);
+        }
     }
 }
