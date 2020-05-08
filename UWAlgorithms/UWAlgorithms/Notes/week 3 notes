@@ -1,0 +1,25 @@
+30 searches in 1 billion
+34 searches in 10 billion
+
+log of 10 is 3
+log of 1000 is about 10
+log 1000000 is about 20
+ 
+ Recursion
+ find an element in sorted array is O Log n
+ Recursion takes up stack space
+ be careful of depth of recursion
+ dont use it unless you can guarenteed it wont be a problem.
+ factorial is O of N runtime
+ Fibonacci is O of (2^n) is exponential
+ Both Algorithms are O of N Space
+ O of N for factorial because it stays on stack n times
+ O of N for Fibonacci Because Depth is the most stack space at anytime.
+ it calls the function one at a time and release it once it is returned.
+ 
+ Memoization
+ If I already computed it. Use the result from memory again.
+ Cache Values that are freshly computed.
+ with memoization we can go from exponential to linear for Fibonacci
+ It still remains O(n) for Big O
+ 

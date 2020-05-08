@@ -1,0 +1,70 @@
+Bits and Bytes
+
+when two digits base 10 possible combination is 10
+
+10 * 10 = 100
+
+0-99
+
+therefore the amount of possible value is base ^ n
+
+The possible value in each digit is 0 to n - 1
+
+example 0 - 9 for base 10
+0 - G for base 16
+
+bit & 0 and 1 = 0
+lsb = bit & on first digit
+msb = bit & on last digit.
+
+XOR 0 and 1 = 1
+XO
+when shifitng left in in base 2 number is multiplied by 2
+shifting left in base 10 is multiplied by 10. 
+
+multiplication = shift by left
+division = shift by right
+
+1000 bytes = 1 kb
+1000 kb = 1 mb 
+1000 mb = 1 gb 10^9
+1000 gb = tb 10^12
+1000 tb = pb
+
+
+base 16 possible values in one digit
+0123456789ABCDEFG
+
+to convert decimal (base 10) to base 16
+you divide by 16 
+the remainder will be the value you need to convert to base 16 possible values.
+for example if remainder is 15 you would need to map that to F.
+then the append the results backwards to get the desire hexadecimalvalue.
+
+32/16 = 2 with r 0
+2/ 16 = 0 with r 2
+32 in base 16 is 20
+
+
+To Convert base 16 to base 10 you multiply each digit by 16^ n and add sum.
+
+20 in decimal is
+
+2				0
+
+16^1			16^0
+
+2 * 16 = 32		0 * 1 = 0
+
+32 + 0 = 32
+
+
+
+
+Stack And Queues
+
+when you new up an instance you use heap 
+and when you use primitive you use stack
+
+heap cause fragmentation in memory(restaurants guest come and go, takes up space and free up space)
+stack memory is contigous(whoever comes in last will leave first) no fragmentation. 
