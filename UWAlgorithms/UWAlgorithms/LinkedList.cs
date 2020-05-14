@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UWAlgorithms
 {
@@ -89,7 +90,9 @@ namespace UWAlgorithms
                 mergedList.Add(num);
             }
 
-            return bubbleSort(mergedList);
+            bubbleSort(mergedList);
+
+            return mergedList;
         }
 
         /**
@@ -102,49 +105,42 @@ namespace UWAlgorithms
          * current becomes node we saved
          * prev will point to head at end
          * **/
-        public void reverse(LinkedList<int> inputList)
-        {
-            Node prev = null;
-            var current = inputList.First;
+        //public void reverse(LinkedList<int> inputList)
+        //{
+        //    Node prev = null;
+        //    var current = inputList.First;
 
-            while(current.Next != null)
-            {
-                var next = current.Next;
+        //    while(current.Next != null)
+        //    {
+        //        var next = current.Next;
 
-                current.Next = prev;
+        //        current.Next = prev;
 
-                prev = current;
+        //        prev = current;
 
-                current = next;
-            }
-        }
+        //        current = next;
+        //    }
+        //}
 
-        private List<int> bubbleSort(List<int> inputList)
-        {
-            var isSorted = false;
-            var track = false;
+        // Recursive reverse
+        // if head is null or head.next is null return head
+        // call reverse until you get the head of reversed list
+        // point head.next.next pointer to head
+        // point head.next to null because it is the next one to be reversed
+        // return the head node you saved. 
+        //public LinkedListNode<int> reverse(LinkedListNode<int> head)
+        //{
+        //    if (head == null || head.Next == null)
+        //    {
+        //        return head;
+        //    }
 
-            while(isSorted == false)
-            {
-                for(int i = 0; i < inputList.Count - 1; i++)
-                {
-                    if(inputList[i] > inputList[i + 1])
-                    {
-                        var temp = inputList[i + 1];
-                        inputList[i + 1] = inputList[i];
-                        inputList[i] = temp;
-                        track = true;            
-                    }
-                }
+        //    var reverseListNode = reverse(head.Next);
+        //    head.Next.Next = head;
+        //    head.Next = null;
 
-                if(track == false)
-                {
-                    isSorted = true;
-                }
-            }
-
-            return inputList;
-        }
+        //    return reverseListNode;
+        //}
 
     }
 }
