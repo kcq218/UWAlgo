@@ -1,0 +1,36 @@
+﻿Binary Tree
+
+Leaf node means the node does not have a left or right node
+number of node is 2^(h+1) - 1
+Balance tree maximum difference in depth between any two leaf node is 1
+
+complete tree has two nodes on all level with the exception of last level which is still filled from left to right. o 
+
+Traversal
+Dethp First Traversal
+Breadth First Traversal
+
+
+Good way to remember order is the location of the root.
+
+Pre-order Traversal
+root, left, right
+a,b,d,e,c,f,g
+
+in-order Traversal
+left, root, right
+
+
+Post order
+left, right, root
+
+BST 
+
+every BST is a BT but not every BT is BST.
+
+value held by left subtree is <= than the parent's node value
+value held by right subtree is > than the parent's node value
+BTS O(N) time and space complexity. 
+height of a complete tree is about log2n
+worse case bst search is the height of tree. 
+if the tree is not balanced it could have worst than ologn
