@@ -1,0 +1,42 @@
+﻿/**
+
+Stack can be implemented with an array or LinkedList
+
+Array
+
+Push is O(1)
+Pop O(1)
+peek or top is O(1)
+IsEmpty = U
+Space(O N)
+
+LinkedList
+(O)M
+2 * N pointer for doubly linked list
+
+
+Queue
+
+Use circular array because it avoids shifitng
+
+Enqueue
+tail and head are both initialized at index -1
+when u enqueue u add + 1 to the index of tail
+then you check if the queue is full by comparing index of head and tail. in fixed size queue
+if head is at -1 then make head 0;
+
+dqueue
+if queue is not empty return head
+check if head == tail
+set head and tail to -1
+else
+head moves 1
+
+All operations are O(1) time complexity
+
+O(n) space due to the size of the queue. 
+
+LinkedList
+No fixed size
+
+**/
