@@ -1,15 +1,22 @@
 ﻿Binary Tree
 
 Leaf node means the node does not have a left or right node
+
+Height of a node is the height from the deepest node or the ground.\
+Depth
+
+Root subtree is the root of the right or left tree.
+Height of a root node is 1+ height of the deepest subtree
+
 number of node is 2^(h+1) - 1
 Balance tree maximum difference in depth between any two leaf node is 1
 
-complete tree has two nodes on all level with the exception of last level which is still filled from left to right. o 
+complete tree has two nodes on all level with the exception of last level which is still filled from left to right. 
+Balanced Tree means any leaft node is 1 or less in height difference in compare to any other leaf node. 
 
 Traversal
 Dethp First Traversal
 Breadth First Traversal
-
 
 Good way to remember order is the location of the root.
 
@@ -20,9 +27,10 @@ a,b,d,e,c,f,g
 in-order Traversal
 left, root, right
 
-
 Post order
 left, right, root
+
+
 
 BST 
 
