@@ -1,6 +1,7 @@
 ﻿namespace AlgoTest
 {
     using System;
+    using System.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
@@ -75,7 +76,9 @@
 
         private TreeNode CreateMyTree()
         {
-            var head = new TreeNode(10);
+            var intList = new List<int>();
+
+            var head = new TreeNode(intList);
 
             // left subtree
             head.leftNode.value = 7;
@@ -105,7 +108,7 @@
                 rightNode = null;
             }
 
-            public TreeNode(int value)
+            public TreeNode(List<int> value)
             {
                 value = value;
                 leftNode = null;
