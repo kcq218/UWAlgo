@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace UWAlgorithms
 {
@@ -25,6 +27,12 @@ namespace UWAlgorithms
         public BinarySearchTree(List<int> values)
         {
             root = null;
+            values.Sort();
+
+            foreach(int num in values)
+            {
+                insert(num);
+            }
 
         }
 
@@ -37,7 +45,8 @@ namespace UWAlgorithms
         {
             if (root == null)
             {
-                return new Node(value);
+                root = new Node(value);
+                return root;
             }
 
             else if (value >= root.value)
@@ -56,36 +65,108 @@ namespace UWAlgorithms
         // 2) Write a function that returns the in-order traversal of the tree as space-separated string.
         public string InOrder()
         {
-            return "";
+            var sb = new StringBuilder();
+
+            RecursiveInOrder(root, sb);
+
+            return sb.ToString().Trim();
+        }
+
+        public void RecursiveInOrder(Node root, StringBuilder sb)
+        {
+            if (root != null)
+            {
+                RecursiveInOrder(root.left, sb);
+                sb.Append(" " + root.value);
+                RecursiveInOrder(root.right, sb);
+            }
         }
 
         // 3) Write a function that returns the pre-order traversal of the tree as space-separated string.
         public string PreOrder()
         {
-            return "";
+            var sb = new StringBuilder();
+
+            RecursivePreOrder(root, sb);
+
+            return sb.ToString().Trim();
+        }
+
+        public void RecursivePreOrder(Node root, StringBuilder sb)
+        {
+            if (root != null)
+            {
+                sb.Append(" " + root.value);
+                RecursivePreOrder(root.left, sb);
+                RecursivePreOrder(root.right, sb);
+            }
         }
 
         // 4) Write a function that returns the post-order traversal of the tree as space-separated string.
         public string PostOrder()
         {
-            return "";
+            var sb = new StringBuilder();
+
+            RecursivePostOrder(root, sb);
+
+            return sb.ToString().Trim();
+        }
+
+        public void RecursivePostOrder(Node root, StringBuilder sb)
+        {
+
+            if (root != null)
+            {
+                RecursivePostOrder(root.left, sb);
+                RecursivePostOrder(root.right, sb);
+                sb.Append(" " + root.value);
+            }
+
         }
 
         // 5) Write a function that determines the height of a given tree.
-        public int Height => 0;
+        public int Height => BinaryTreeHeight(root);
+
+        private int BinaryTreeHeight(Node root)
+        {
+            if(root == null)
+            {
+                return 0;
+            }
+
+            return 1 + Math.Max(BinaryTreeHeight(root.left), BinaryTreeHeight(root.right));
+        }
 
         // 6) Write a function that returns the sum of all values in a tree.
         public int Sum()
         {
-            return 0;
+            return sumBinaryTree(root);
+        }
+
+        private int sumBinaryTree(Node root)
+        {
+
+            if(root == null)
+            {
+                return 0;
+            }
+
+            return root.value + sumBinaryTree(root.left) + sumBinaryTree(root.right);
         }
 
         // 7) Write a function that returns a bool indicating that a value exists (or not) in a given tree.
         public bool Contains(int value)
         {
-            return false;
+            return ContainsValue(value, root);
         }
 
+        private bool ContainsValue(int value, Node root)
+        {
+            if (root == null) return false;
+            if (root.value == value) return true;
+            if (root.value > value) return ContainsValue(value,root.left);
+            return ContainsValue(value,root.right);
+        }
     }
 
     class MainClass
