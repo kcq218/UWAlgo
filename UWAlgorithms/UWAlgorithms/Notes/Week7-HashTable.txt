@@ -1,0 +1,26 @@
+﻿HashTable
+
+Consist of Arrays
+Take key and convert it to an index
+access content based on that index
+converting key to index is hashing
+Example: 
+1. Hash a key (0 1)
+2. Mod by size of table to get index of the array (O 1)
+3. if there is a value at that index and is the same value as the key then we found the value
+4. If it does not match but there are still values at that index (linkedlist) Keep going down values of that index to find the next match
+O(1) time complexity for insertion and searching
+
+Collision
+Collisiong since hash function might result in same integer
+caused by bad hasing 
+or load factor(1 if storage is full and .5 if half) n/hashtable size. can be bigger than one if using chaining.
+Linear probing is maxed out at 1.
+collision is resolved by chaining or linear probing
+if full we cannot simply copy over to a bigger array due to the size of the array when it is hashed again.
+
+Hash Function
+Should give good distribution
+it should be deterministic everytime, returns consistent value.
+hashcode()
+

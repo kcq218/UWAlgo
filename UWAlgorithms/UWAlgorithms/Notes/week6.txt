@@ -1,44 +1,43 @@
 ﻿Binary Tree
 
+root does not have parent
 Leaf node means the node does not have a left or right node
-
+lower bound(minimum amount of node ) baseed on h = h + 1
+upper bound (maximum amount of nodes) is 2^(h + 1) - 1
+maximum height of n nodes is n - 1
+min height if n nodes is log base 2 (N)
+worst case of getting height of tree is N (visit all nodes)
 Height of a node is the height from the deepest node or the ground.\
-Depth
-
+Depth one value height = 0. 1 branch = 1.
 Root subtree is the root of the right or left tree.
 Height of a root node is 1+ height of the deepest subtree
-
 number of node is 2^(h+1) - 1
 Balance tree maximum difference in depth between any two leaf node is 1
-
 complete tree has two nodes on all level with the exception of last level which is still filled from left to right. 
 Balanced Tree means any leaft node is 1 or less in height difference in compare to any other leaf node. 
-
-Traversal
-Dethp First Traversal
-Breadth First Traversal
-
-Good way to remember order is the location of the root.
-
-Pre-order Traversal
-root, left, right
-a,b,d,e,c,f,g
-
-in-order Traversal
-left, root, right
-
-Post order
-left, right, root
-
 
 
 BST 
 
 every BST is a BT but not every BT is BST.
-
 value held by left subtree is <= than the parent's node value
 value held by right subtree is > than the parent's node value
 BTS O(N) time and space complexity. 
 height of a complete tree is about log2n
-worse case bst search is the height of tree. 
+worst case most of the time for bst search is the height of tree. 
 if the tree is not balanced it could have worst than ologn
+Inorder traversal will print out nodes in order from small to large. 
+
+Traversal
+
+Dethp First Traversal
+Breadth First Traversal
+Good way to remember order is the location of the root.
+Pre-order Traversal
+root, left, right
+a,b,d,e,c,f,g
+in-order Traversal
+left, root, right
+Post order
+left, right, root
+
