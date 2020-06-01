@@ -18,6 +18,7 @@ or load factor(1 if storage is full and .5 if half) n/hashtable size. can be big
 Linear probing is maxed out at 1.
 collision is resolved by chaining or linear probing
 if full we cannot simply copy over to a bigger array due to the size of the array when it is hashed again.
+Linear Probing causes a lot of work when collision happens.
 
 Hash Function
 Should give good distribution
