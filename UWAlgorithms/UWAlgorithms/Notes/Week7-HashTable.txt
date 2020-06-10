@@ -35,7 +35,7 @@ load factor
 Load factor
 Number of entries/Capicity of the table
 Load factor does not affect efficiency in searching
-
 When HashTable is full
 Allocate the bigger array
 Rehash Key present in the hash table to determine new indices into the bigger array
+Equal is used to check if key equals the input key at that index. if it matches then return that entry, because that is the entry we are searching for. 
