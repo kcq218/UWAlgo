@@ -25,3 +25,17 @@ Should give good distribution
 it should be deterministic everytime, returns consistent value.
 hashcode()
 
+Quiz
+Hash function takes as input the key
+Hash value of the key is used to index into the hashtable
+Factor that affect Hash Table Performance
+how evenly distributed
+collision
+load factor
+Load factor
+Number of entries/Capicity of the table
+Load factor does not affect efficiency in searching
+
+When HashTable is full
+Allocate the bigger array
+Rehash Key present in the hash table to determine new indices into the bigger array
