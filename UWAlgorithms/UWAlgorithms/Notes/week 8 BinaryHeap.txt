@@ -1,1 +1,33 @@
-﻿
+﻿Binary Heap
+Complete Binary Tree
+and has heap ordering property
+
+Min Heap
+Value of each node >= value of its parent node
+parent is smaller than its children
+smallest value is at the root
+one value is also a min heap
+
+Max Heap
+Parent is >= either of its childern
+parent is bigger than its children
+biggest value is at the root.
+one value could be a max heap too
+
+Array representation of heap
+starts at 1
+goes from middle, left , right, left right....
+left child is 2 * i
+right child is 2 * i + 1
+parent is i/2
+height of binary heap is log n
+leaf node is n/2 + 1 to n
+90% of nodes is at the bottom
+last level is n/2
+second level is n/4
+third level is n/8
+
+Generate min heap
+start at leaf level
+
+
