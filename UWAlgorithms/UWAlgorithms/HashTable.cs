@@ -38,28 +38,9 @@ namespace UWAlgorithms
     class ProbingHashTable : HashTableBase
     {
 
-        public override void Add(string key, string value)
-        {
-            
-            throw new NotImplementedException();
-        }
-
-        public override void Delete(string key)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string Lookup(string key)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    class ChainingHashTable : HashTableBase
-    {
         string[,] hashBuckets;
 
-        public ChainingHashTable()
+        public ProbingHashTable()
         {
             Size = 10;
             hashBuckets = new string[Size, 2];
@@ -72,25 +53,92 @@ namespace UWAlgorithms
         // check if index is occupied if it is move to next avai
         public override void Add(string key, string value)
         {
-            if(LoadFactor > (3/4))
+            if (LoadFactor >= (3 / 4))
             {
+                Size = Size * 2;
+                Count = 0;
+
+                var temp = hashBuckets;
+
+                hashBuckets = new string[Size, 2];
+
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    if (temp[i, 0] != null)
+                    {
+                        InsertHelper(temp[i, 0], temp[i, 1]);
+                    }
+                }
 
             }
-            
+            else
+            {
+                InsertHelper(key, value);
+            }
+        }
+
+        void InsertHelper(string key, string value)
+        {
             var hashIndex = Hash(key) % Size;
-            
-            while(hashBuckets[hashIndex,0] != null && hashBuckets[hashIndex,0] != key)
+
+            while (hashBuckets[hashIndex, 0] != null && hashBuckets[hashIndex, 0] != key)
             {
                 hashIndex++;
                 hashIndex = hashIndex % Size;
             }
 
-            if(hashBuckets[hashIndex,0] == null )
+            if (hashBuckets[hashIndex, 0] == null)
             {
-                hashBuckets[hashIndex,0] = key;
-                hashBuckets[hashIndex,1] = value;
+                hashBuckets[hashIndex, 0] = key;
+                hashBuckets[hashIndex, 1] = value;
                 Count++;
-            }            
+            }
+        }
+
+        public override void Delete(string key)
+        {
+            var hashIndex = Hash(key) % Size;
+
+            while (hashBuckets[hashIndex, 0] != null)
+            {
+                if (hashBuckets[hashIndex, 0] == key)
+                {
+                    hashBuckets[hashIndex, 0] = null;
+                    hashBuckets[hashIndex, 1] = null;
+
+                    Count--;
+                }
+
+                hashIndex++;
+                hashIndex = hashIndex % Size;
+            }
+        }
+
+        public override string Lookup(string key)
+        {
+            var hashIndex = Hash(key) % Size;
+
+            while (hashBuckets[hashIndex, 0] != null)
+            {
+                if (hashBuckets[hashIndex, 0] == key)
+                {
+                    return hashBuckets[hashIndex, 1];
+                }
+
+                hashIndex++;
+                hashIndex = hashIndex % Size;
+            }
+
+            return null;
+        }
+    }
+    }
+
+    class ChainingHashTable : UWAlgorithms.HashTableBase
+{
+        public override void Add(string key, string value)
+        {
+            throw new NotImplementedException();
         }
 
         public override void Delete(string key)
