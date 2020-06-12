@@ -61,4 +61,9 @@ take the last element put it as root in the heap then heapify down and subtract 
 Repeatedly calling extractmin would also mean we are doing a heap sort
 extract min is o logn to do N times the whole operation would be O(n log n)
 
-
+Priority Queue
+Pull out highest priority item from a queue
+Can be implemented with Min or Max Heap
+O(1) to get min and o log n to extract min
+insertion would be o log n
+ 

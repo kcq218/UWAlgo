@@ -9,11 +9,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace UWAlgorithms
 {
     // 
-    public class LinkedList
+    public class LinkedListUW
     {
         private Node head;
         private int length;
-        public LinkedList()
+        public LinkedListUW()
         {
             head.value = 0;
             head.next = null;
