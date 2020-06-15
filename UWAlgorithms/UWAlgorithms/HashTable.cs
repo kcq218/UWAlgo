@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace UWAlgorithms
 {
-    using System;
+    
     using System.Linq;
-    using System.Collections.Generic;
-    using System.Drawing;
-    using System.Runtime.CompilerServices;
 
     abstract class HashTableBase
     {
@@ -43,14 +37,10 @@ namespace UWAlgorithms
         public ProbingHashTable()
         {
             Size = 10;
+            Count = 0;
             hashBuckets = new string[Size, 2];
         }
 
-        // check size of table
-        // if over.75 rehash and get a bigger table
-        // hash key to get index.
-        // go to index
-        // check if index is occupied if it is move to next avai
         public override void Add(string key, string value)
         {
             if (LoadFactor >= (3 / 4))
@@ -70,6 +60,7 @@ namespace UWAlgorithms
                     }
                 }
 
+                InsertHelper(key, value);
             }
             else
             {
@@ -132,28 +123,115 @@ namespace UWAlgorithms
             return null;
         }
     }
-    }
 
     class ChainingHashTable : UWAlgorithms.HashTableBase
-{
+    {
+        LinkedList[] BucketsArray; 
+
+        public ChainingHashTable()
+        {
+            Size = 10;
+            Count = 0;
+            BucketsArray = new LinkedList[10];
+            
+            for(int i = 0; i < BucketsArray.Length; i ++)
+            {
+                BucketsArray[i] = new LinkedList();
+            }
+        }
+
         public override void Add(string key, string value)
         {
-            throw new NotImplementedException();
+            var hashIndex = 0;
+
+            if (LoadFactor >= 1.5)
+            {
+                Size = Size * 2;
+                Count = 0;
+
+                var temp = BucketsArray;
+
+                BucketsArray = new LinkedList[Size];
+
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    if (temp[i] != null)
+                    {
+                        var current = temp[i].head;
+
+                        while (current != null)
+                        {
+                            hashIndex = Hash(current.Key) % Size;
+                            BucketsArray[hashIndex].Add(current.Key, current.Value);
+                            Count++;
+
+                            current = current.Pointer;
+                        }
+                    }
+                }
+
+                hashIndex = Hash(key) % Size;
+
+                BucketsArray[hashIndex].Add(key, value);
+                Count++;
+            }
+
+            else
+            {
+                hashIndex = Hash(key) % Size;
+
+                if (BucketsArray[hashIndex] == null)
+                {
+                    BucketsArray[hashIndex] = new LinkedList(key, value);
+                    Count++;
+                }
+
+                else
+                {
+                    if (BucketsArray[hashIndex].Lookup(key) == string.Empty)
+                    {
+                        BucketsArray[hashIndex].Add(key, value);
+                        Count++;
+                    }
+                }
+            }
         }
 
         public override void Delete(string key)
         {
-            throw new NotImplementedException();
+            var hashIndex = Hash(key) % Size;
+
+            if (BucketsArray[hashIndex] == null)
+            {
+                return;
+            }
+            else
+            {
+                if (BucketsArray[hashIndex].Delete(key)) Count--;
+            }
         }
 
         public override string Lookup(string key)
         {
-            throw new NotImplementedException();
+            var hashIndex = Hash(key) % Size;
+
+            if (BucketsArray[hashIndex] == null)
+            {
+                return string.Empty;
+            }
+
+            else
+            {
+                return BucketsArray[hashIndex].Lookup(key);
+            }
         }
     }
 
     class LinkedList
     {
+
+        public Node head;
+
         public class Node
         {
             public string Key { get; set; }
@@ -164,22 +242,83 @@ namespace UWAlgorithms
             {
                 Key = key;
                 Value = value;
+                Pointer = null;
             }
+        }
+
+        public LinkedList(string key, string value)
+        {
+            head.Key = key;
+            head.Value = value;
+            head.Pointer = null;
+        }
+
+        public LinkedList()
+        {
+            head = null;
         }
 
         public void Add(string key, string value)
         {
-            throw new NotImplementedException();
+            var current = head;
+            
+            if (head == null)
+            {
+                head = new Node(key, value);
+            }
+            else
+            {
+                while (current.Pointer != null)
+                {
+                    current = current.Pointer;
+                }
+
+                current.Pointer = new Node(key, value);
+            }
         }
 
         public string Lookup(string key)
         {
-            throw new NotImplementedException();
+            var current = head;
+           
+            while(current != null)
+            {
+                if (current.Key == key)
+                    return current.Value;
+
+                current = current.Pointer;
+            }
+
+            return string.Empty;
         }
 
         public bool Delete(string key)
         {
-            throw new NotImplementedException();
+            var current = head;
+            Node prev = null;
+
+            if(head != null && head.Key == key)
+            { 
+                head = current.Pointer;
+                return true;
+            }
+
+            else
+            {
+                while(current != null)
+                {
+                    if(current.Key == key)
+                    {
+                        prev.Pointer = current.Pointer;
+                        return true;
+                    }
+
+                    prev = current;
+                    current = current.Pointer;
+                }
+            }
+
+            return false;            
         }
     }
 }

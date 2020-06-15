@@ -4,230 +4,228 @@ using System.Text;
 
 namespace UWAlgorithms
 {
-    class LinearProbing
-    {
-        private int currentSize, maxSize;
-        private String[] keys;
-        private String[] vals;
+    //class LinearProbing
+    //{
+    //    private int currentSize, maxSize;
+    //    private String[] keys;
+    //    private String[] vals;
 
-        public LinearProbing(int capacity)
-        {
+    //    public LinearProbing(int capacity)
+    //    {
 
-        }
+    //    }
 
-        public String get(String key)
-        {
-            int index = key.GetHashCode() % 10;
+    //    public String get(String key)
+    //    {
+    //        int index = key.GetHashCode() % 10;
 
-            while (keys[index] != null)
-            {
-                if (keys[index] == key)
-                {
-                    return vals[index];
-                }
-                
-                index = (index + 1) % 10;
-            }
+    //        while (keys[index] != null)
+    //        {
+    //            if (keys[index] == key)
+    //            {
+    //                return vals[index];
+    //            }
 
-            return null;
-        }
+    //            index = (index + 1) % 10;
+    //        }
 
-        public void insert(String key, String value)
-        {
-            int index = key.GetHashCode() % 10;
+    //        return null;
+    //    }
 
-            while (keys[index] != null && keys[index] != value)
-            {
-                index = (index + 1) % 10;
-            }
+    //    public void insert(String key, String value)
+    //    {
+    //        int index = key.GetHashCode() % 10;
 
-            if(keys[index] == value)
-            {
-                return;
-            }
+    //        while (keys[index] != null && keys[index] != value)
+    //        {
+    //            index = (index + 1) % 10;
+    //        }
 
-            keys[index] = value;
-        }
+    //        if (keys[index] == value)
+    //        {
+    //            return;
+    //        }
 
-        public bool exist(String key)
-        {
-            return get(key) != null;
-        }
+    //        keys[index] = value;
+    //    }
 
-        public void remove(String key) 
-        {
-            if (!exist(key))
-            {
-                return;
-            }
+    //    public bool exist(String key)
+    //    {
+    //        return get(key) != null;
+    //    }
 
-            int index = key.GetHashCode() % 10;
+    //    public void remove(String key)
+    //    {
+    //        if (!exist(key))
+    //        {
+    //            return;
+    //        }
 
-            while (key != (keys[index]))
-            {
-                index = (index + 1) % 10;
-            }
+    //        int index = key.GetHashCode() % 10;
 
-            keys[index] = null;
-            vals[index] = null;
- 
-            for (index = (index + 1) % 10; keys[index] != null; index = (index + 1) % maxSize)
-            {
-                var tempKey = keys[index];
-                var tempValue = vals[index];
+    //        while (key != (keys[index]))
+    //        {
+    //            index = (index + 1) % 10;
+    //        }
 
-                keys[index] = null;
-                vals[index] = null;
-                
-                currentSize--;  
-                insert(tempKey, tempValue);            
-            }
+    //        keys[index] = null;
+    //        vals[index] = null;
 
-            currentSize--;        
-        }
+    //        for (index = (index + 1) % 10; keys[index] != null; index = (index + 1) % maxSize)
+    //        {
+    //            var tempKey = keys[index];
+    //            var tempValue = vals[index];
 
+    //            keys[index] = null;
+    //            vals[index] = null;
 
-        ****************************************************************************************
+    //            currentSize--;
+    //            insert(tempKey, tempValue);
+    //        }
 
-        class Map<K, V>
-        {
-            // bucketArray is used to store array of chains 
-            private ArrayList<HashNode<K, V>> bucketArray;
+    //        currentSize--;
+    //    }
 
-            // Current capacity of array list 
-            private int numBuckets;
+    //    class Map<K, V>
+    //    {
+    //        // bucketArray is used to store array of chains 
+    //        private ArrayList<HashNode<K, V>> bucketArray;
 
-            // Current size of array list 
-            private int size;
+    //        // Current capacity of array list 
+    //        private int numBuckets;
 
-            // Constructor (Initializes capacity, size and 
-            // empty chains. 
-            public Map()
-            {
-                bucketArray = new ArrayList<>();
-                numBuckets = 10;
-                size = 0;
+    //        // Current size of array list 
+    //        private int size;
 
-                // Create empty chains 
-                for (int i = 0; i < numBuckets; i++)
-                    bucketArray.add(null);
-            }
+    //        // Constructor (Initializes capacity, size and 
+    //        // empty chains. 
+    //        public Map()
+    //        {
+    //            bucketArray = new ArrayList<>();
+    //            numBuckets = 10;
+    //            size = 0;
 
-            public int size() { return size; }
-            public boolean isEmpty() { return size() == 0; }
+    //            // Create empty chains 
+    //            for (int i = 0; i < numBuckets; i++)
+    //                bucketArray.add(null);
+    //        }
 
-            // This implements hash function to find index 
-            // for a key 
-            private int getBucketIndex(K key)
-            {
-                int hashCode = key.hashCode();
-                int index = hashCode % numBuckets;
-                return index;
-            }
+    //        public int size() { return size; }
+    //        public boolean isEmpty() { return size() == 0; }
 
-            // Method to remove a given key 
-            public V remove(K key)
-            {
-                // Apply hash function to find index for given key 
-                int bucketIndex = getBucketIndex(key);
+    //        // This implements hash function to find index 
+    //        // for a key 
+    //        private int getBucketIndex(K key)
+    //        {
+    //            int hashCode = key.hashCode();
+    //            int index = hashCode % numBuckets;
+    //            return index;
+    //        }
 
-                // Get head of chain 
-                HashNode<K, V> head = bucketArray.get(bucketIndex);
+    //        // Method to remove a given key 
+    //        public V remove(K key)
+    //        {
+    //            // Apply hash function to find index for given key 
+    //            int bucketIndex = getBucketIndex(key);
 
-                // Search for key in its chain 
-                HashNode<K, V> prev = null;
-                while (head != null)
-                {
-                    // If Key found 
-                    if (head.key.equals(key))
-                        break;
+    //            // Get head of chain 
+    //            HashNode<K, V> head = bucketArray.get(bucketIndex);
 
-                    // Else keep moving in chain 
-                    prev = head;
-                    head = head.next;
-                }
+    //            // Search for key in its chain 
+    //            HashNode<K, V> prev = null;
+    //            while (head != null)
+    //            {
+    //                // If Key found 
+    //                if (head.key.equals(key))
+    //                    break;
 
-                // If key was not there 
-                if (head == null)
-                    return null;
+    //                // Else keep moving in chain 
+    //                prev = head;
+    //                head = head.next;
+    //            }
 
-                // Reduce size 
-                size--;
+    //            // If key was not there 
+    //            if (head == null)
+    //                return null;
 
-                // Remove key 
-                if (prev != null)
-                    prev.next = head.next;
-                else
-                    bucketArray.set(bucketIndex, head.next);
+    //            // Reduce size 
+    //            size--;
 
-                return head.value;
-            }
+    //            // Remove key 
+    //            if (prev != null)
+    //                prev.next = head.next;
+    //            else
+    //                bucketArray.set(bucketIndex, head.next);
 
-            // Returns value for a key 
-            public V get(K key)
-            {
-                // Find head of chain for given key 
-                int bucketIndex = getBucketIndex(key);
-                HashNode<K, V> head = bucketArray.get(bucketIndex);
+    //            return head.value;
+    //        }
 
-                // Search key in chain 
-                while (head != null)
-                {
-                    if (head.key.equals(key))
-                        return head.value;
-                    head = head.next;
-                }
+    //        // Returns value for a key 
+    //        public V get(K key)
+    //        {
+    //            // Find head of chain for given key 
+    //            int bucketIndex = getBucketIndex(key);
+    //            HashNode<K, V> head = bucketArray.get(bucketIndex);
 
-                // If key not found 
-                return null;
-            }
+    //            // Search key in chain 
+    //            while (head != null)
+    //            {
+    //                if (head.key.equals(key))
+    //                    return head.value;
+    //                head = head.next;
+    //            }
 
-            // Adds a key value pair to hash 
-            public void add(K key, V value)
-            {
-                // Find head of chain for given key 
-                int bucketIndex = getBucketIndex(key);
-                HashNode<K, V> head = bucketArray.get(bucketIndex);
+    //            // If key not found 
+    //            return null;
+    //        }
 
-                // Check if key is already present 
-                while (head != null)
-                {
-                    if (head.key.equals(key))
-                    {
-                        head.value = value;
-                        return;
-                    }
-                    head = head.next;
-                }
+    //        // Adds a key value pair to hash 
+    //        public void add(K key, V value)
+    //        {
+    //            // Find head of chain for given key 
+    //            int bucketIndex = getBucketIndex(key);
+    //            HashNode<K, V> head = bucketArray.get(bucketIndex);
 
-                // Insert key in chain 
-                size++;
-                head = bucketArray.get(bucketIndex);
-                HashNode<K, V> newNode = new HashNode<K, V>(key, value);
-                newNode.next = head;
-                bucketArray.set(bucketIndex, newNode);
+    //            // Check if key is already present 
+    //            while (head != null)
+    //            {
+    //                if (head.key.equals(key))
+    //                {
+    //                    head.value = value;
+    //                    return;
+    //                }
+    //                head = head.next;
+    //            }
 
-                // If load factor goes beyond threshold, then 
-                // double hash table size 
-                if ((1.0 * size) / numBuckets >= 0.7)
-                {
-                    ArrayList<HashNode<K, V>> temp = bucketArray;
-                    bucketArray = new ArrayList<>();
-                    numBuckets = 2 * numBuckets;
-                    size = 0;
-                    for (int i = 0; i < numBuckets; i++)
-                        bucketArray.add(null);
+    //            // Insert key in chain 
+    //            size++;
+    //            head = bucketArray.get(bucketIndex);
+    //            HashNode<K, V> newNode = new HashNode<K, V>(key, value);
+    //            newNode.next = head;
+    //            bucketArray.set(bucketIndex, newNode);
 
-                    for (HashNode<K, V> headNode : temp)
-                    {
-                        while (headNode != null)
-                        {
-                            add(headNode.key, headNode.value);
-                            headNode = headNode.next;
-                        }
-                    }
-                }
-            }
+    //            // If load factor goes beyond threshold, then 
+    //            // double hash table size 
+    //            if ((1.0 * size) / numBuckets >= 0.7)
+    //            {
+    //                ArrayList<HashNode<K, V>> temp = bucketArray;
+    //                bucketArray = new ArrayList<>();
+    //                numBuckets = 2 * numBuckets;
+    //                size = 0;
+    //                for (int i = 0; i < numBuckets; i++)
+    //                    bucketArray.add(null);
 
-        }
+    //                for (HashNode<K, V> headNode : temp)
+    //                {
+    //                    while (headNode != null)
+    //                    {
+    //                        add(headNode.key, headNode.value);
+    //                        headNode = headNode.next;
+    //                    }
+    //                }
+    //            }
+    //        }
+
+    //    }
+    //}
 }
