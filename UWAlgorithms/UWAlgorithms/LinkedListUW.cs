@@ -76,24 +76,24 @@ namespace UWAlgorithms
             }
         }
 
-        public List<int> MergeSortedList(List<int> list1, List<int> list2)
-        {
-            var mergedList = new List<int>();
+        //public List<int> MergeSortedList(List<int> list1, List<int> list2)
+        //{
+        //    var mergedList = new List<int>();
 
-            foreach(var num in list1)
-            {
-                mergedList.Add(num);
-            }
+        //    foreach(var num in list1)
+        //    {
+        //        mergedList.Add(num);
+        //    }
 
-            foreach(var num in list2)
-            {
-                mergedList.Add(num);
-            }
+        //    foreach(var num in list2)
+        //    {
+        //        mergedList.Add(num);
+        //    }
 
-            bubbleSort(mergedList);
+        //    bubbleSort(mergedList);
 
-            return mergedList;
-        }
+        //    return mergedList;
+        //}
 
         /**
          * Initialize pointer

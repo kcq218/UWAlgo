@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -12,7 +13,7 @@ namespace UWAlgorithms
             public Node left;
             public Node right;
             public int value;
-            
+
             public Node(int value)
             {
                 this.value = value;
@@ -29,7 +30,7 @@ namespace UWAlgorithms
             root = null;
             values.Sort();
 
-            foreach(int num in values)
+            foreach (int num in values)
             {
                 insert(num);
             }
@@ -129,7 +130,7 @@ namespace UWAlgorithms
 
         private int BinaryTreeHeight(Node root)
         {
-            if(root == null)
+            if (root == null)
             {
                 return 0;
             }
@@ -146,7 +147,7 @@ namespace UWAlgorithms
         private int sumBinaryTree(Node root)
         {
 
-            if(root == null)
+            if (root == null)
             {
                 return 0;
             }
@@ -164,40 +165,41 @@ namespace UWAlgorithms
         {
             if (root == null) return false;
             if (root.value == value) return true;
-            if (root.value > value) return ContainsValue(value,root.left);
-            return ContainsValue(value,root.right);
+            if (root.value > value) return ContainsValue(value, root.left);
+            return ContainsValue(value, root.right);
         }
     }
 
     class MainClass
     {
-        public static void Main(string[] args)
-        {
-            var mode = Console.ReadLine();
-            var input = Console.ReadLine();
-            var values = input.Split(new[] { ' ' }).Select(Int32.Parse).ToList();
-            var tree = new BinarySearchTree(values);
-            switch (mode)
-            {
-                case "in_order":
-                    Console.WriteLine(tree.InOrder());
-                    break;
-                case "pre_order":
-                    Console.WriteLine(tree.PreOrder());
-                    break;
-                case "post_order":
-                    Console.WriteLine(tree.PostOrder());
-                    break;
-                case "height":
-                    Console.WriteLine(tree.Height);
-                    break;
-                case "sum":
-                    Console.WriteLine(tree.Sum());
-                    break;
-                case "contains":
-                    int value = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine(tree.Contains(value));
-                    break;
-            }
-        }
+        //public static void Main(string[] args)
+        //{
+        //    var mode = Console.ReadLine();
+        //    var input = Console.ReadLine();
+        //    var values = input.Split(new[] { ' ' }).Select(Int32.Parse).ToList();
+        //    var tree = new BinarySearchTree(values);
+        //    switch (mode)
+        //    {
+        //        case "in_order":
+        //            Console.WriteLine(tree.InOrder());
+        //            break;
+        //        case "pre_order":
+        //            Console.WriteLine(tree.PreOrder());
+        //            break;
+        //        case "post_order":
+        //            Console.WriteLine(tree.PostOrder());
+        //            break;
+        //        case "height":
+        //            Console.WriteLine(tree.Height);
+        //            break;
+        //        case "sum":
+        //            Console.WriteLine(tree.Sum());
+        //            break;
+        //        case "contains":
+        //            int value = Convert.ToInt32(Console.ReadLine());
+        //            Console.WriteLine(tree.Contains(value));
+        //            break;
+        //    }
+        //}
+    }
 }
