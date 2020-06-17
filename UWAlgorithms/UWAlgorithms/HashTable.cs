@@ -1,10 +1,10 @@
 ﻿
 namespace UWAlgorithms
 {
-    
+    using System;
     using System.Linq;
 
-    abstract class HashTableBase
+    public abstract class HashTableBase
     {
         protected int Size { get; set; }
 
@@ -29,7 +29,7 @@ namespace UWAlgorithms
         }
     }
 
-    class ProbingHashTable : HashTableBase
+    public class ProbingHashTable : HashTableBase
     {
 
         string[,] hashBuckets;
@@ -39,11 +39,17 @@ namespace UWAlgorithms
             Size = 10;
             Count = 0;
             hashBuckets = new string[Size, 2];
+
+            for(int i = 0; i < Size; i ++)
+            {
+                hashBuckets[i,0] = null;
+                hashBuckets[i,1] = null;
+            }
         }
 
         public override void Add(string key, string value)
         {
-            if (LoadFactor >= (3 / 4))
+            if (LoadFactor >= .75)
             {
                 Size = Size * 2;
                 Count = 0;
@@ -52,7 +58,7 @@ namespace UWAlgorithms
 
                 hashBuckets = new string[Size, 2];
 
-                for (int i = 0; i < temp.Length; i++)
+                for (int i = 0; i < Size/2; i++)
                 {
                     if (temp[i, 0] != null)
                     {
@@ -120,11 +126,11 @@ namespace UWAlgorithms
                 hashIndex = hashIndex % Size;
             }
 
-            return null;
+            return string.Empty;
         }
     }
 
-    class ChainingHashTable : UWAlgorithms.HashTableBase
+    public class ChainingHashTable : UWAlgorithms.HashTableBase
     {
         LinkedList[] BucketsArray; 
 
@@ -152,6 +158,11 @@ namespace UWAlgorithms
                 var temp = BucketsArray;
 
                 BucketsArray = new LinkedList[Size];
+                
+                for (int i = 0; i < BucketsArray.Length; i++)
+                {
+                    BucketsArray[i] = new LinkedList();
+                }
 
                 for (int i = 0; i < temp.Length; i++)
                 {

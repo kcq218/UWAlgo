@@ -1,0 +1,74 @@
+﻿Binary Heap
+Complete Binary Tree
+and has heap ordering property
+Binary heap has nothing to do with memory heap
+
+Min Heap
+Value of each node >= value of its parent node
+parent is smaller than its children
+smallest value is at the root
+one value is also a min heap
+
+Max Heap
+Parent is >= either of its childern
+parent is bigger than its children
+biggest value is at the root.
+one value could be a max heap too
+
+Array representation of heap
+starts at 1
+goes from middle, left , right, then left right of previous left, and then same thing to right....
+left child is 2 * i
+right child is 2 * i + 1
+parent is i/2
+height of binary heap is log n
+leaf node is n/2 + 1 to n
+90% of nodes is at the bottom
+last level is n/2
+second level is n/4
+third level is n/8
+
+Generate min heap
+start at leaf level
+skip the leaf level because they are already min heap
+only worry about the child and parent on each iteration
+if parent is greater than child you will swap
+move to the left
+compare parent to childrens if there is more than one child
+if it is bigger than the two children swap it with the smalles
+keep going until you get to heapifying the root
+once the root is in its proper place we are done
+each child is bigger than its parent.
+
+BIG O of binary heap
+O of N to create MinHeap
+O of 1 to access min or max of heap
+remove min or max element of heap is O log n (height of tree)
+one element can move maximum distance of logn (only root node will do this)
+Big o of heapify is n
+it is reasonable to say n log n
+but 50% of the nodes are at the leaf level which we dont touch
+and only the root can travel log n
+so N is the average case.
+
+Inserting in Min Heap
+new element has to be inserted at the end of the binary heap (left most of Complete BT)
+structural is still maintained but order might not
+we will need to heapify up to the root again
+
+Accessing/Searching in MinHeap
+minheap method returns the root's value.
+Extract or delete will heapify down to balance the order 
+Extract or delete will remove the root.
+take the last element put it as root in the heap then heapify down and subtract 1 from size.
+
+Repeatedly calling extractmin would also mean we are doing a heap sort
+extract min is o logn to do N times the whole operation would be O(n log n)
+Getting max value of min heap is o of n specifically n/2 because 50# of the nodes are at the leaf level.
+
+Priority Queue
+Pull out highest priority item from a queue
+Can be implemented with Min or Max Heap
+O(1) to get min and o log n to extract min
+insertion would be o log n
+ 
