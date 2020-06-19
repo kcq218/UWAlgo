@@ -1,0 +1,35 @@
+﻿Bubble Sort
+Counting Sort
+Selection Sort
+Merge Sort
+HeapSort
+QuickSort
+
+In place sorting algorithms
+Does not use additional memory
+two elements that are equal
+sorted output will have a and b in the same location.
+
+bubble sort n2
+start at first element and adjcent one
+swap them if needed
+move forward if needed
+move to next element
+it compares one less number after each run
+i.e the first run will have largest number at the end
+when the pass thru is sorted it is done.
+
+selection sort
+find the smallest element and swap with current index being compared to
+o of n complexity
+
+Merge sort
+O of N space
+best and worst case is n log n
+divides list until it gets to size 1
+then merges them into sorted list of size 2
+then 4....
+
+Quicksort
+best case is o n log n
+worst case is o n 2

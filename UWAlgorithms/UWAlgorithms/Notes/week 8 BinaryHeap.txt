@@ -17,7 +17,7 @@ one value could be a max heap too
 
 Array representation of heap
 starts at 1
-goes from middle, left , right, left right....
+goes from middle, left , right, then left right of previous left, and then same thing to right....
 left child is 2 * i
 right child is 2 * i + 1
 parent is i/2
@@ -41,6 +41,9 @@ once the root is in its proper place we are done
 each child is bigger than its parent.
 
 BIG O of binary heap
+O of N to create MinHeap
+O of 1 to access min or max of heap
+remove min or max element of heap is O log n (height of tree)
 one element can move maximum distance of logn (only root node will do this)
 Big o of heapify is n
 it is reasonable to say n log n
@@ -49,17 +52,19 @@ and only the root can travel log n
 so N is the average case.
 
 Inserting in Min Heap
-new element has to be inserted at the end of the binary heap
+new element has to be inserted at the end of the binary heap (left most of Complete BT)
 structural is still maintained but order might not
 we will need to heapify up to the root again
 
+Accessing/Searching in MinHeap
 minheap method returns the root's value.
-
-Extract or delete will heapify down to balance the order
+Extract or delete will heapify down to balance the order 
+Extract or delete will remove the root.
 take the last element put it as root in the heap then heapify down and subtract 1 from size.
 
 Repeatedly calling extractmin would also mean we are doing a heap sort
 extract min is o logn to do N times the whole operation would be O(n log n)
+Getting max value of min heap is o of n specifically n/2 because 50# of the nodes are at the leaf level.
 
 Priority Queue
 Pull out highest priority item from a queue
