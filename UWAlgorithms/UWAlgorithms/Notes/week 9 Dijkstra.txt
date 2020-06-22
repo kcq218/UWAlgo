@@ -1,5 +1,110 @@
-﻿Graph
+﻿
+Graph has edges and vertices
+
+Vertices
+A,B,C,D
+Edges: pairs of vertices 
+An edge can be represented two vertex which makes it a vertex pair.
+Collection of edge list is a graph
+Edged list can be a collection of vertex pairs
+Space complexity of a graph is the amount of edges it has. 
+E1, E2, E3, E4
+
+
+Undirected and Directed.
+V:{A,B,C,D}
+E:{(a,b), (b,c), (c,d), (b,d)}
+
+
+Directed graph
+V: {A,B,C,D}
+E: {(B,A), (B,C), }
+
+Graph vs tree
 Graph can have a loop
 a tree cannot have a loop
+tree only has one rott node
+each node only has one children for a tree
+a node only goes one direction for a tree
 graph can have more than one root
 graph node can have more than one parent
+
+Adjacent Vertices
+Two vertices are said to be adjacent if there is an edge between them
+
+path
+if you can get from vertex a to vertex b there is a path between two vertices
+sequenses to get from one vertices to another is a path
+
+Degree
+Undirected Graph
+Degree of a vertex is the mumber of edges that comes out of vertex.
+Directed Graph
+Has in degree and out degree
+
+Complete graph
+Length of the shortest path from one vertex to another is one 
+Connected graph
+if a path exists for any two vertces is is a connected graph
+Connected Graph is not a complete graph
+
+To figure out edges on a complete undirected graph
+N * (N-1)/2
+
+Complete directed graph
+N * (N-1)
+
+Weighted Graph
+Weight of a graph is the cost of an edge
+
+Adjacency Matrix
+e dimensional array of v x v
+space complexity is v^2
+O(1) for searching
+O of V for finding how many adjecent vertices are connected
+good if small dont use if graph is huge
+
+List Graph
+o(1) for accessing
+O(neighbors of v1 or neighbors of v2) searching for an edge
+
+BFS or DFS
+
+BFS
+start at a given node then go to each node after that 
+
+topological sort
+
+Directed Graph
+some job to be done
+a job has to be done before starting the next one
+that job has to be in the front of the next job
+TOPO sort can only be done on Directed Acylic Graph
+Circular dependency prevents topo sort when two vertices serve as both in/out degree.
+
+1. start from a vertex that has no incoming edges.
+	compute in degree of all vertices
+	one time step (O of e)
+2. 	find a vertex ith in-degree of 0
+
+Djikstra Algorithm
+shortest path between two points
+route between two points on a map
+
+two list 
+visited
+
+non visited
+1. start from shortest distance
+which is a
+2. visit unvisited neighbors
+a -> b = 0+6
+a -> d = 0+1 = 1
+3. Replace shortest distance from starting vertex for each visited
+infinity becomes 6 for b->a
+infinity becomes 1 for d->a
+visited b and d from a so make previous vertex a for those vertexes\
+add a to visited
+repeat again for all unvisted. this time add the distance to previous shortest distance
+for example d-> b = 1+2  = 3 because a to d - 1
+add to visited until there are no more unvistied
