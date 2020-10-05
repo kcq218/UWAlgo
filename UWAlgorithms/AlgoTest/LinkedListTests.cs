@@ -39,6 +39,8 @@ namespace AlgoTest
 
             Assert.AreEqual(result, 2);
             Assert.AreEqual(0, list.Get(0));
+            Assert.AreEqual(-1, list.Get(1));
+
         }
     }
 
@@ -83,7 +85,7 @@ namespace AlgoTest
 
         internal int Get(int v)
         {
-            if(v > size)
+            if(v >= size)
             {
                 return -1;
             }
@@ -119,12 +121,13 @@ namespace AlgoTest
                 return -1;
             }
 
-
+            var num = 0;
             if(head == tail)
             {
-                var num = head.value;
+                num = head.value;
                 head = null;
                 tail = null;
+                size--;
                 return num;
             }
 
@@ -135,7 +138,7 @@ namespace AlgoTest
                 temp = temp.next;
             }
 
-            var num = temp.next.value;
+            num = temp.next.value;
 
             temp.next = temp.next.next;
             if(temp.next == null)
@@ -143,6 +146,7 @@ namespace AlgoTest
                 tail = temp;
             }
 
+            size--;
             return num;
         }
     }
