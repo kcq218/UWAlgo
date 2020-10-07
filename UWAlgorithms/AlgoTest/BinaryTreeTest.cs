@@ -2,117 +2,169 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.Design.Serialization;
+    using System.Net.Http.Headers;
+    using System.Reflection.Metadata.Ecma335;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class BinaryTreeTest
     {
-        public int BinaryTreeOperations()
+        [TestMethod]
+        public void testAddToTree()
         {
-            var headNode = CreateMyTree();
-            return 0;
+            var bt = new BinaryTree();
+
+            bt.AddToTree(1);
+            bt.AddToTree(0);
+            bt.AddToTree(5);
+            bt.AddToTree(3);
+
+            Assert.AreEqual(bt.returnRoot().val, 1);
+            Assert.AreEqual(bt.returnRoot().left.val, 0);
+            Assert.AreEqual(bt.returnRoot().right.val, 5);
+            Assert.AreEqual(bt.returnRoot().right.left.val, 3);
         }
 
-        private int ComputeTreeHeight(TreeNode head)
+        [TestMethod]
+        public void testHeightOfTree()
         {
-            if(head == null)
-            {
-                return 0;
-            }
+            var bt = new BinaryTree();
 
-            return 1 +  Math.Max(ComputeTreeHeight(head.rightNode), ComputeTreeHeight(head.rightNode));
+            bt.AddToTree(1);
+            bt.AddToTree(0);
+            bt.AddToTree(5);
+            bt.AddToTree(3);
+
+            Assert.AreEqual(bt.ReturnHeight(), 3);
         }
 
-        private void InorderTraversal(TreeNode root)
+        [TestMethod]
+        public void testContains()
         {
-            if(root == null)
-            {
-                return;
-            }
+            var bt = new BinaryTree();
 
-            InorderTraversal(root.leftNode);
-            Console.WriteLine(root.value);
-            InorderTraversal(root.rightNode);
+            bt.AddToTree(1);
+            bt.AddToTree(0);
+            bt.AddToTree(5);
+            bt.AddToTree(3);
+
+            Assert.AreEqual(true, bt.Contains(3));
+            Assert.AreEqual(true, bt.Contains(1));
+            Assert.AreEqual(true, bt.Contains(0));
+            Assert.AreEqual(true, bt.Contains(5));
+            Assert.AreEqual(false, bt.Contains(-1));
+        }
+    }
+
+    public class Node
+    {
+        public int val;
+        public Node left;
+        public Node right;
+
+        public Node(int val = 0, Node next = null, Node right = null)
+        {
+            this.val = val;
+            this.left = next;
+            this.right = right;
+        }
+    }
+
+    public class BinaryTree
+    {
+
+        private Node root;
+
+        public BinaryTree()
+        {
+            root = null;
         }
 
-        private void PreOrderTraversal(TreeNode root)
+        public void AddToTree(int num)
         {
             if (root == null)
             {
-                return;
+                root = new Node(num);
             }
-
-            Console.WriteLine(root.value);
-            PreOrderTraversal(root.leftNode);
-            PreOrderTraversal(root.rightNode);
-        }
-
-        private void PostOrderTraversal(TreeNode root)
-        {
-            if (root == null)
+            else
             {
-                return;
+                root = btHelper(root, num);
             }
-
-            PostOrderTraversal(root.leftNode);
-            PostOrderTraversal(root.rightNode);
-            Console.WriteLine(root.value);
         }
 
-        private int getNumberOfNodes(TreeNode root)
+        private Node btHelper(Node root, int num)
+        {
+            if(root == null)
+            {
+                root = new Node(num);
+            }
+            else if(num >= root.val)
+            {
+                root.right = btHelper(root.right, num);
+            }
+            else
+            {
+                root.left = btHelper(root.left, num);
+            }
+
+            return root;
+        }
+
+        public Node returnRoot()
+        {
+            return root;
+        }
+
+        internal int ReturnHeight()
         {
             if(root == null)
             {
                 return 0;
             }
-
-            if (root.leftNode == null && root.rightNode == null)
-            {
-                return 1;
-            }
-
-            return (getNumberOfNodes(root.leftNode) + getNumberOfNodes(root.rightNode));
+            
+            return HeightHelper(root,0);
         }
 
-        private TreeNode CreateMyTree()
+        private int HeightHelper(Node root, int v)
         {
-            var intList = new List<int>();
-
-            var head = new TreeNode(intList);
-
-            // left subtree
-            head.leftNode.value = 7;
-            head.leftNode.leftNode.value = 11;
-            head.leftNode.rightNode.value = 22;
-            head.leftNode.leftNode.value = 11;
-            head.leftNode.leftNode.leftNode.value = 52;
-
-            // right subtree
-            head.rightNode.value = 4;
-            head.rightNode.leftNode.value = 1;
-            head.rightNode.rightNode.value = 8;
-
-            return new TreeNode();
+            if(root == null)
+            {
+                return v;
+            }
+            else
+            {
+                return Math.Max(HeightHelper(root.left, v + 1), HeightHelper(root.right, v + 1));
+            }
         }
 
-        internal class TreeNode
+        public bool Contains(int v)
         {
-            public int value;
-            public TreeNode leftNode;
-            public TreeNode rightNode;
-
-            public TreeNode()
+            if(root == null)
             {
-                value = 0;
-                leftNode = null;
-                rightNode = null;
+                return false;
             }
 
-            public TreeNode(List<int> value)
+            return ContainsHelper(root, v);
+        }
+
+        private bool ContainsHelper(Node root, int v)
+        {
+            if(root == null)
             {
-                value = value;
-                leftNode = null;
-                rightNode = null;
+                return false;
+            }
+            else if(v > root.val)
+            {
+                return ContainsHelper(root.right, v);
+            }
+            else if(v < root.val)
+            {
+                return ContainsHelper(root.left, v);
+            }
+            else
+            {
+                return true;
             }
         }
     }
