@@ -26,7 +26,7 @@ namespace AlgoTest
         {
             int[] test = new int[] { 0, -1, -3, 9, 11, 3 };
 
-            quickSort(test);
+            quickSort(test, 0, test.Length - 1);
 
             Assert.AreEqual(test[0], -3);
             Assert.AreEqual(test[1], -1);
@@ -36,9 +36,47 @@ namespace AlgoTest
             Assert.AreEqual(test[5], 11);
         }
 
-        private void quickSort(int[] test)
+        // IF LOW IS LESS THAN HIGH THERE IS STILL A PIVOT
+        // CALL PARTITION TO GET PIVOT
+        // THEN QUICKSORT RECURSIVELY AROUND PIVOT ON THE LEFT AND RIGHT SIDE OF TEST ARRAY.
+        private void quickSort(int[] test, int lowIndex, int highIndex)
         {
-            throw new NotImplementedException();
+            if (lowIndex < highIndex)
+            {
+                int partitionIndex = partition(test, lowIndex, highIndex);
+
+                quickSort(test, lowIndex, partitionIndex - 1);
+                quickSort(test, partitionIndex + 1, highIndex);
+            }
+        }
+        
+       // START WITH TOSWAP (LOWINDEX - 1) TO GET THE INDEX OF LOWINDEX - 1
+       // INCREMENT TOSWAP IF TEST[I] IS LESS THAN PIVOT
+       // SWAP TOSWAP WITH TES[I] SO THAT SMALLER THAN PIVOT ELEMENT GETS REPLACED WITH NUMBER THAT IS BIGGER THAN PIVOT ELEMENT
+       // IN THE END SWAP TOSWAP + 1 WITH HIGH INDEX SINCE TOSWAP + 1 IS WHERE THE PIVOT SHOULD NOW BE
+       // RETURN TOSWAP + 1 SINCE IT IS THE LOCATION OF PIVOT.
+        private int partition(int[] test, int lowIndex, int highIndex)
+        {
+            int pivot = test[highIndex];
+            int toSwap = lowIndex - 1;
+
+            for(int i = lowIndex; i < highIndex; i++)
+            {
+                if(test[i] < pivot)
+                {
+                    toSwap++;
+                    var temp = test[i];
+                    test[i] = test[toSwap];
+                    test[toSwap] = test[i];          
+                }
+            }
+
+            var temp1 = test[toSwap + 1];
+            test[toSwap + 1] = test[highIndex];
+
+            test[highIndex] = temp1;
+
+            return toSwap + 1;
         }
 
         public void mergsort(int[] test)
@@ -46,6 +84,9 @@ namespace AlgoTest
             doMergeSort(test, 0, test.Length - 1);
         }
 
+        // Keep spliting them in half by calling domergeSort on left
+        // and on the right side
+        // merge them back once they cannot be split anymore from the bottom up one stack at a time. 
         private void doMergeSort(int[] test, int v1, int v2)
         {
             var middle = v1 + (v2 - v1) / 2; 
