@@ -38,7 +38,7 @@ namespace AlgoTest
 
         // IF LOW IS LESS THAN HIGH THERE IS STILL A PIVOT
         // CALL PARTITION TO GET PIVOT
-        // THEN QUICKSORT RECURSIVELY ON THE LEFT AND RIGHT SIDE OF TEST ARRAY.
+        // THEN QUICKSORT RECURSIVELY AROUND PIVOT ON THE LEFT AND RIGHT SIDE OF TEST ARRAY.
         private void quickSort(int[] test, int lowIndex, int highIndex)
         {
             if (lowIndex < highIndex)
@@ -84,6 +84,9 @@ namespace AlgoTest
             doMergeSort(test, 0, test.Length - 1);
         }
 
+        // Keep spliting them in half by calling domergeSort on left
+        // and on the right side
+        // merge them back once they cannot be split anymore from the bottom up one stack at a time. 
         private void doMergeSort(int[] test, int v1, int v2)
         {
             var middle = v1 + (v2 - v1) / 2; 
