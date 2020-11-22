@@ -52,7 +52,7 @@ namespace UWAlgorithms
 
                 for (int i = 0; i < capacity; i++)
                 {
-                    buckets[i] = null;
+                    buckets.Add(null);
                 }
 
                 foreach (var item in tempbuckets)
@@ -62,6 +62,8 @@ namespace UWAlgorithms
                         AddHelper(item.key, item.value);
                     }
                 }
+
+                AddHelper(key, Value);
             }
             else
             {
@@ -81,27 +83,27 @@ namespace UWAlgorithms
 
                     return;
                 }
-                else
-                {
-                    index++;
-                    index = key.GetHashCode() % capacity;
-                }
+
+                index++;
+                index = key.GetHashCode() % capacity;
             }
 
             buckets[index] = new HashBucket<K, V>(key, Value);
             size++;
         }
-        public HashBucket<K,V> Get(K Key)
+        public HashBucket<K,V> Get(K key)
         {
-            foreach (var bucket in buckets)
+            var index = key.GetHashCode() % capacity;
+
+            while (buckets[index] != null)
             {
-                if(bucket != null)
+                if (buckets[index].key.Equals(key))
                 {
-                    if(bucket.key.Equals(Key))
-                    {
-                        return bucket;
-                    }
-                }    
+                    return buckets[index];
+                }
+
+                index++;
+                index = key.GetHashCode() % capacity;
             }
 
             return null;
@@ -114,12 +116,23 @@ namespace UWAlgorithms
 
         public void Remove(K key)
         {
-            for (int i = 0; i < capacity; i++)
+            if (size > 0)
             {
-                if(buckets[i] != null && buckets[i].key.Equals(key))
+
+                var index = key.GetHashCode() % capacity;
+
+                while (buckets[index] != null)
                 {
-                    buckets[i] = null;
+                    if (buckets[index].key.Equals(key))
+                    {
+                        buckets[index] = null;
+                    }
+
+                    index++;
+                    index = key.GetHashCode() % capacity;
                 }
+
+                size--;
             }
         }
     }
@@ -131,8 +144,8 @@ namespace UWAlgorithms
 
         public HashBucket(K Key, V Value)
         {
-            this.key = key;
-            this.value = value;
+            this.key = Key;
+            this.value = Value;
         }
     }
 }
