@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace UWAlgorithms
 {
@@ -12,7 +14,7 @@ namespace UWAlgorithms
     // add 
     // extract
     // peek
-    public class MinHeap<T>
+    public class MinHeap<T>: Comparer<T>
     {
         private T[] heap;
         private int size;
@@ -30,19 +32,43 @@ namespace UWAlgorithms
 
         public void Add(T value)
         {
-            HeapifyUp(size, value);
+            heap[size++] = value;
+            HeapifyUp(size);
         }
 
-        private void HeapifyUp(int index, T value)
+        private void HeapifyUp(int index)
         {
-           if(index == 0)
+           if(index <= 1)
            {
                 return;
            }
 
             var above = heap[index / 2];
 
-            if(value )
+            if(heap[index]. < above)
+            {
+
+            }
+        }
+
+        public override int Compare([AllowNull] T x, [AllowNull] T y)
+        {
+            if (x.CompareTo(y) > 0)
+            {
+                return x.Length.CompareTo(y.Length);
+            }
+            else if (x.Height.CompareTo(y.Height) != 0)
+            {
+                return x.Height.CompareTo(y.Height);
+            }
+            else if (x.Width.CompareTo(y.Width) != 0)
+            {
+                return x.Width.CompareTo(y.Width);
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }
