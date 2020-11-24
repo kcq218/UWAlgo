@@ -14,8 +14,8 @@ namespace UWAlgorithms
     // add 
     // extract
     // peek
-    public class MinHeap<T>: Comparer<T>
-    {
+    public class MinHeap<T> where T : IComparable
+    { 
         private T[] heap;
         private int size;
 
@@ -45,29 +45,9 @@ namespace UWAlgorithms
 
             var above = heap[index / 2];
 
-            if(heap[index]. < above)
+            if(heap[index].CompareTo(above) >= 0)
             {
 
-            }
-        }
-
-        public override int Compare([AllowNull] T x, [AllowNull] T y)
-        {
-            if (x.CompareTo(y) > 0)
-            {
-                return x.Length.CompareTo(y.Length);
-            }
-            else if (x.Height.CompareTo(y.Height) != 0)
-            {
-                return x.Height.CompareTo(y.Height);
-            }
-            else if (x.Width.CompareTo(y.Width) != 0)
-            {
-                return x.Width.CompareTo(y.Width);
-            }
-            else
-            {
-                return 0;
             }
         }
     }
